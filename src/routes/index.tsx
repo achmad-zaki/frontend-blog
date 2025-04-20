@@ -1,8 +1,8 @@
-import App from "@/App";
 import MainLayout from "@/layout/main-layout";
-import AuthLayout from "@/pages/auth/auth-layout";
+import AuthLayout from "@/layout/auth-layout";
 import LoginPage from "@/pages/auth/login-page";
 import RegisterPage from "@/pages/auth/register-page";
+import HomePage from "@/pages/home-page";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <App />
+                element: <HomePage />
             },
         ]
     }
