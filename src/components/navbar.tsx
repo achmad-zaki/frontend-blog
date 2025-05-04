@@ -1,59 +1,62 @@
-import { FaBars } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import Logo from "@/assets/icons/logo";
+import SearchInput from "./search-input";
+import { RiQuillPenLine } from "react-icons/ri";
+import { IoSearchOutline } from "react-icons/io5";
 import { Button } from "./ui/button";
 
 function Navbar() {
-    const MENU_ITEMS = [
-        {
-            name: "Beranda",
-            path: "#"
-        },
-        {
-            name: "Kategori",
-            path: "#"
-        },
-        {
-            name: "Tentang",
-            path: "#"
-        },
-        {
-            name: "Kontak",
-            path: "#"
-        },
-    ]
-
     return (
-        <header className="p-5 bg-gray-50">
+        <header className="p-5 bg-white border-b">
             <div className="max-w-6xl mx-auto">
                 <div className="flex items-center justify-between">
-                    <Link to="/" className="font-playfair text-xl font-semibold">Blog - Site</Link>
-
-                    <button className="rounded-full bg-gray-100 p-4 cursor-pointer hover:bg-gray-200 transition lg:hidden">
-                        <FaBars className="size-4 text-gray-700" />
-                    </button>
-
-                    <div className="lg:flex hidden gap-8">
-                        <nav className="items-center gap-8 flex">
-                            {MENU_ITEMS.map((item, index) => {
-                                return (
-                                    <Link
-                                        key={index}
-                                        to={item.path}
-                                        className="font-medium text-sm text-gray-800">
-                                        {item.name}
-                                    </Link>
-                                )
-                            })}
-                        </nav>
-
-                        <div className="space-x-2">
-                            <Button asChild className="" size="lg">
-                                <Link to="/auth/login">Masuk</Link>
-                            </Button>
-                            <Button asChild variant="outline" size="lg">
-                                <Link to="/auth/register">Daftar</Link>
-                            </Button>
+                    {/* KIRI */}
+                    <div className="flex items-center gap-4">
+                        <Link
+                            to="/"
+                        >
+                            <Logo />
+                        </Link>
+                        <div className="relative w-full hidden md:block">
+                            <span className="absolute inset-y-0 left-3 flex items-center text-gray-500">
+                                <IoSearchOutline className="size-5" />
+                            </span>
+                            <input
+                                type="text"
+                                placeholder="Search"
+                                className="pl-10 pr-4 py-2 w-full rounded-full border focus:outline-none focus:ring-2 focus:ring-gray-800 bg-gray-100"
+                            />
                         </div>
+                    </div>
+
+                    {/* KANAN */}
+                    <div className="flex items-center gap-4">
+                        {/* Write button: hanya tampil di md ke atas */}
+                        <div className="hidden md:flex items-center gap-6 hover:underline">
+                            <button className="flex items-center gap-1 cursor-pointer text-gray-600">
+                                <RiQuillPenLine className="size-6" />
+                                <span className="text-sm">Write</span>
+                            </button>
+                        </div>
+
+                        <SearchInput />
+                        {/* Sign In */}
+                        <Button asChild size='lg' className='rounded-full'>
+                            <Link
+                                to="/auth/login"
+                            >
+                                Sign In
+                            </Link>
+                        </Button>
+
+                        {/* Sign Up: hanya tampil di md ke atas */}
+                        <Button asChild size='lg' variant='secondary' className='rounded-full'>
+                            <Link
+                                to="/auth/login"
+                            >
+                                Sign Up
+                            </Link>
+                        </Button>
                     </div>
                 </div>
             </div>
